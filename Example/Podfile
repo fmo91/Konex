@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'Konex_Example' do
+  pod 'Konex', :path => '../'
+
+  target 'Konex_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
