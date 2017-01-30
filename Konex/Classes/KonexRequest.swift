@@ -8,7 +8,6 @@
 
 import Foundation
 import RxSwift
-import ObjectMapper
 
 public protocol KonexRequest {
     var path: String { get }
