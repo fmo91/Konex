@@ -1,0 +1,6 @@
+framework module Pods_Konex_Tests {
+  umbrella header "Pods-Konex_Tests-umbrella.h"
+
+  export *
+  module * { export * }
+}

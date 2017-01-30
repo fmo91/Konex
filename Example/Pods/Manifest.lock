@@ -1,0 +1,31 @@
+PODS:
+  - Konex (0.1.0):
+    - RxCocoa (~> 3.0)
+    - RxObjectMapper (~> 0.1)
+    - RxSwift (~> 3.0)
+  - ObjectMapper (2.2.2)
+  - RxCocoa (3.1.0):
+    - RxSwift (~> 3.1)
+  - RxObjectMapper (0.1.0):
+    - ObjectMapper (~> 2.2)
+    - RxCocoa (~> 3.0)
+    - RxSwift (~> 3.0)
+  - RxSwift (3.1.0)
+
+DEPENDENCIES:
+  - Konex (from `../`)
+
+EXTERNAL SOURCES:
+  Konex:
+    :path: ../
+
+SPEC CHECKSUMS:
+  Konex: 6e0b355b85395f3d1621a773e2b98b645fa5ad15
+  ObjectMapper: 9e385c2295bcc4e16eabbcfc85db801442bba545
+  RxCocoa: 50d7564866da9299161e86a263ce12a0873904d8
+  RxObjectMapper: 2806f1b7fee8edc06b7ccaf095174b45e3e82fb0
+  RxSwift: 83ff553e7593fdfdcb2562933a64c0284dffdadc
+
+PODFILE CHECKSUM: 3ed2c8db0f56c873d4293fad5e1349f9c54f585b
+
+COCOAPODS: 1.1.1
