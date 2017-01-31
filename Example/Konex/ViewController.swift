@@ -9,7 +9,6 @@
 import UIKit
 import ObjectMapper
 import Konex
-import RxSwift
 
 struct Post: Mappable {
     var id = -1
@@ -43,8 +42,6 @@ struct CreatePostRequest: KonexRequest {
 
 class ViewController: UIViewController {
 
-    let disposeBag = DisposeBag()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -55,28 +52,27 @@ class ViewController: UIViewController {
         let request = GetAllPostsRequest()
         
         client
-            .requestArray(of: Post.self, request: request)
-            .subscribe(
-                onNext: { (posts: [Post]) in
-                    
-                },
-                onError: { (error: Error) in
-                    
-                }
-            )
-            .addDisposableTo(disposeBag)
-        
-        client
-            .requestObject(ofType: Post.self, request: CreatePostRequest())
-            .subscribe(
-                onNext: { post in
+            .requestArray(of: Post.self,
+                request: request,
+                onSuccess: { posts in
                     
                 },
                 onError: { error in
                     
                 }
             )
-            .addDisposableTo(disposeBag)
+        
+        client
+            .requestObject(ofType: Post.self,
+                request: CreatePostRequest(),
+                onSuccess: { post in
+                    
+                },
+                onError: { error in
+                    
+                }
+            )
+        
     }
 
     override func didReceiveMemoryWarning() {

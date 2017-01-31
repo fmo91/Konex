@@ -40,7 +40,5 @@ You can extend it with plugins, response processors and validators. More info in
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
-  s.dependency 'RxSwift', '~> 3.0'
-  s.dependency 'RxCocoa', '~> 3.0'
-  s.dependency 'RxObjectMapper', '~> 0.1.0'
+  s.dependency 'ObjectMapper', '~> 2.2'
 end

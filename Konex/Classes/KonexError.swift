@@ -14,4 +14,5 @@ enum KonexError: Error {
     case wrongResponse(Error)
     case emptyResponse
     case invalidResponse
+    case invalidParsing
 }

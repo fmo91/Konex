@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import RxSwift
 
 public protocol KonexRequest {
     var requestPlugins: [KonexPlugin] { get }

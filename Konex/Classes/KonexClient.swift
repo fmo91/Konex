@@ -7,9 +7,7 @@
 //
 
 import Foundation
-import RxSwift
 import ObjectMapper
-import RxObjectMapper
 
 public final class KonexClient {
     
@@ -23,7 +21,8 @@ public final class KonexClient {
         self.urlSession = urlSession
     }
     
-    private func dispatch(request: KonexRequest, plugins localPlugins: [KonexPlugin] = [], responseProcessors localResponseProcessors: [KonexResponseProcessor] = [], responseValidators localResponseValidators: [KonexResponseValidator] = [], onSuccess: @escaping (Any) -> Void, onError: @escaping (Error) -> Void) -> URLSessionDataTask? {
+    @discardableResult
+    public func request(request: KonexRequest, plugins localPlugins: [KonexPlugin] = [], responseProcessors localResponseProcessors: [KonexResponseProcessor] = [], responseValidators localResponseValidators: [KonexResponseValidator] = [], onSuccess: @escaping (Any) -> Void, onError: @escaping (Error) -> Void) -> URLSessionDataTask? {
         
         let plugins = self.plugins + localPlugins + request.requestPlugins
         let responseProcessors = self.responseProcessors + localResponseProcessors + request.requestResponseProcessors
@@ -80,29 +79,45 @@ public final class KonexClient {
         }
     }
     
-    public func request(_ request: KonexRequest, plugins localPlugins: [KonexPlugin] = [], responseProcessors localResponseProcessors: [KonexResponseProcessor] = [], responseValidators localResponseValidators: [KonexResponseValidator] = []) -> Observable<Any> {
-        return .create { observer in
-            let task = self.dispatch(request: request,
-                onSuccess: { json in
-                    observer.onNext(json)
-                    observer.onCompleted()
-                },
-                onError: { error in
-                    observer.onError(error)
+    @discardableResult
+    public func requestObject<T:Mappable>(ofType type: T.Type, request: KonexRequest, plugins localPlugins: [KonexPlugin] = [], responseProcessors localResponseProcessors: [KonexResponseProcessor] = [], responseValidators localResponseValidators: [KonexResponseValidator] = [], onSuccess: @escaping (T) -> Void, onError: @escaping (Error) -> Void) -> URLSessionDataTask? {
+        let mapper = Mapper<T>()
+        
+        return self.request(request: request,
+            plugins: localPlugins,
+            responseProcessors: localResponseProcessors,
+            responseValidators: localResponseValidators,
+            onSuccess: { response in
+                guard let parsedObject = mapper.map(JSONObject: response) else {
+                    onError(KonexError.invalidParsing)
+                    return
                 }
-            )
-            
-            return Disposables.create {
-                task?.cancel()
+                onSuccess(parsedObject)
+            },
+            onError: { error in
+                onError(error)
             }
-        }
+        )
     }
     
-    public func requestObject<T:Mappable>(ofType type: T.Type, request: KonexRequest, plugins localPlugins: [KonexPlugin] = [], responseProcessors localResponseProcessors: [KonexResponseProcessor] = [], responseValidators localResponseValidators: [KonexResponseValidator] = []) -> Observable<T> {
-        return self.request(request).mapObject(type: type)
-    }
-    
-    public func requestArray<T: Mappable>(of type: T.Type, request: KonexRequest, plugins localPlugins: [KonexPlugin] = [], responseProcessors localResponseProcessors: [KonexResponseProcessor] = [], responseValidators localResponseValidators: [KonexResponseValidator] = []) -> Observable<[T]> {
-        return self.request(request).mapArray(type: type)
+    @discardableResult
+    public func requestArray<T: Mappable>(of type: T.Type, request: KonexRequest, plugins localPlugins: [KonexPlugin] = [], responseProcessors localResponseProcessors: [KonexResponseProcessor] = [], responseValidators localResponseValidators: [KonexResponseValidator] = [], onSuccess: @escaping ([T]) -> Void, onError: @escaping (Error) -> Void) -> URLSessionDataTask? {
+        let mapper = Mapper<T>()
+        
+        return self.request(request: request,
+            plugins: localPlugins,
+            responseProcessors: localResponseProcessors,
+            responseValidators: localResponseValidators,
+            onSuccess: { response in
+                guard let parsedArray = mapper.mapArray(JSONObject: response) else {
+                    onError(KonexError.invalidParsing)
+                    return
+                }
+                onSuccess(parsedArray)
+            },
+            onError: { error in
+                onError(error)
+            }
+        )
     }
 }

@@ -1,8 +1,8 @@
 {
   "name": "Konex",
-  "version": "0.1.1",
-  "summary": "A short description of Konex.",
-  "description": "TODO: Add long description of the pod here.",
+  "version": "0.1.2",
+  "summary": "Konex is an extensible, protocol oriented, reactive networking layer over URLSession written in swift.",
+  "description": "Konex is an extensible, protocol oriented, reactive networking layer over URLSession written in swift.\n\nYou can extend it with plugins, response processors and validators. More info in github.",
   "homepage": "https://github.com/fmo91/Konex",
   "license": {
     "type": "MIT",
@@ -13,21 +13,15 @@
   },
   "source": {
     "git": "https://github.com/fmo91/Konex.git",
-    "tag": "0.1.1"
+    "tag": "0.1.2"
   },
   "platforms": {
     "ios": "8.0"
   },
   "source_files": "Konex/Classes/**/*",
   "dependencies": {
-    "RxSwift": [
-      "~> 3.0"
-    ],
-    "RxCocoa": [
-      "~> 3.0"
-    ],
-    "RxObjectMapper": [
-      "~> 0.1.0"
+    "ObjectMapper": [
+      "~> 2.2"
     ]
   }
 }
