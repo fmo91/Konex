@@ -10,6 +10,10 @@ import Foundation
 import RxSwift
 
 public protocol KonexRequest {
+    var requestPlugins: [KonexPlugin] { get }
+    var requestResponseProcessors: [KonexResponseProcessor] { get }
+    var requestResponseValidators: [KonexResponseValidator] { get }
+    
     var path: String { get }
     var method: Konex.HTTPMethod { get }
     var parameters: [String: Any]? { get }
@@ -17,6 +21,10 @@ public protocol KonexRequest {
 }
 
 public extension KonexRequest {
+    var requestPlugins: [KonexPlugin] { return [] }
+    var requestResponseProcessors: [KonexResponseProcessor] { return [] }
+    var requestResponseValidators: [KonexResponseValidator] { return [] }
+    
     var method: Konex.HTTPMethod { return .get }
     var parameters: [String: Any]? { return nil }
     var headers: [String: String]? { return nil }
@@ -66,11 +74,5 @@ internal extension KonexRequest {
         }
         
         return body
-    }
-}
-
-public extension KonexRequest {
-    public func dispatch() -> Observable<Any> {
-        return URLSession.shared.rx.json(konexRequest: self)
     }
 }

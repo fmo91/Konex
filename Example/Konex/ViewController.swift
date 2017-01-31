@@ -9,7 +9,6 @@
 import UIKit
 import ObjectMapper
 import Konex
-import RxObjectMapper
 import RxSwift
 
 struct Post: Mappable {
@@ -31,6 +30,17 @@ struct GetAllPostsRequest: KonexRequest {
     let path: String = "https://jsonplaceholder.typicode.com/posts"
 }
 
+struct CreatePostRequest: KonexRequest {
+    var path: String = "https://jsonplaceholder.typicode.com/posts"
+    var parameters: [String : Any]? {
+        return [
+            "title": "Es una prueba",
+            "body": "Que sale bien?"
+        ]
+    }
+    var method: Konex.HTTPMethod = .post
+}
+
 class ViewController: UIViewController {
 
     let disposeBag = DisposeBag()
@@ -38,21 +48,35 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        GetAllPostsRequest()
-            .dispatch()
-            .mapArray(type: Post.self)
-            .map { $0.map { $0.title } }
+        let client = KonexClient()
+        
+        client.plugins.append(KonexComponent.NetworkLogger())
+        
+        let request = GetAllPostsRequest()
+        
+        client
+            .requestArray(of: Post.self, request: request)
             .subscribe(
-                onNext: { (titles: [String]) in
-                    print(titles)
+                onNext: { (posts: [Post]) in
+                    
                 },
                 onError: { (error: Error) in
-                    print("An error ocurred")
+                    
                 }
             )
             .addDisposableTo(disposeBag)
         
-        
+        client
+            .requestObject(ofType: Post.self, request: CreatePostRequest())
+            .subscribe(
+                onNext: { post in
+                    
+                },
+                onError: { error in
+                    
+                }
+            )
+            .addDisposableTo(disposeBag)
     }
 
     override func didReceiveMemoryWarning() {

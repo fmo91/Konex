@@ -40,4 +40,5 @@ TODO: Add long description of the pod here.
   # s.frameworks = 'UIKit', 'MapKit'
   s.dependency 'RxSwift', '~> 3.0'
   s.dependency 'RxCocoa', '~> 3.0'
+  s.dependency 'RxObjectMapper', '~> 0.1.0'
 end

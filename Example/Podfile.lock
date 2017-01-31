@@ -1,7 +1,7 @@
 PODS:
-  - Konex (0.1.0):
+  - Konex (0.1.1):
     - RxCocoa (~> 3.0)
-    - RxObjectMapper (~> 0.1)
+    - RxObjectMapper (~> 0.1.0)
     - RxSwift (~> 3.0)
   - ObjectMapper (2.2.2)
   - RxCocoa (3.1.0):
@@ -20,7 +20,7 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  Konex: 6e0b355b85395f3d1621a773e2b98b645fa5ad15
+  Konex: c38acef993197a547ac8e1fd88140bcf1f9e988f
   ObjectMapper: 9e385c2295bcc4e16eabbcfc85db801442bba545
   RxCocoa: 50d7564866da9299161e86a263ce12a0873904d8
   RxObjectMapper: 2806f1b7fee8edc06b7ccaf095174b45e3e82fb0

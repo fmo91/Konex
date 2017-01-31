@@ -11,4 +11,7 @@ import Foundation
 enum KonexError: Error {
     case invalidURL
     case invalidParameters
+    case wrongResponse(Error)
+    case emptyResponse
+    case invalidResponse
 }
