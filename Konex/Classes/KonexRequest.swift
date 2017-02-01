@@ -10,7 +10,7 @@ import Foundation
 
 /**
  KonexRequest is the request protocol that your requests has to implement
- in order to be dispatched by the Konex.Client
+ in order to be dispatched by the KonexClient
  */
 public protocol KonexRequest {
     var requestPlugins: [KonexPlugin] { get }

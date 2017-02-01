@@ -45,7 +45,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let client = Konex.Client()
+        let client = KonexClient()
         
         let request = GetAllPostsRequest()
         

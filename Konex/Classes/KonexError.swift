@@ -11,7 +11,7 @@ import Foundation
 /**
  An enum with the errors that may happen
  when building the URLRequest or when 
- dispatching that request with a Konex.Client
+ dispatching that request with a KonexClient
  */
 public enum KonexError: Error {
     /**

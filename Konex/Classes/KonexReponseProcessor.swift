@@ -12,7 +12,7 @@ import Foundation
  A KonexResponseProcessor can be used if you want to transform the response in some 
  way after being parsed or returned.
  
- Using KonexResponseProcessors objects, the Konex.Client builds a functional pipeline
+ Using KonexResponseProcessors objects, the KonexClient builds a functional pipeline
  in which the response is transformed.
  */
 public protocol KonexResponseProcessor {
