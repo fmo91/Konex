@@ -25,13 +25,9 @@ public extension Konex {
         open var requestResponseProcessors: [KonexResponseProcessor] = []
         open var requestResponseValidators: [KonexResponseValidator] = []
         
-        public var path: String
+        open var path: String { return "" }
         open var method: Konex.HTTPMethod { return .get }
         open var parameters: [String : Any]? { return [:] }
         open var headers: [String : String]? { return [:] }
-        
-        public init(path: String) {
-            self.path = path
-        }
     }
 }
