@@ -28,4 +28,6 @@ open class KonexBasicRequest: KonexRequest {
     open var method: Konex.HTTPMethod { return .get }
     open var parameters: [String : Any]? { return [:] }
     open var headers: [String : String]? { return [:] }
+    
+    public init() {}
 }
