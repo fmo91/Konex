@@ -8,26 +8,24 @@
 
 import Foundation
 
-public extension Konex {
-    /**
-     Konex.BasicRequest is intended to be the base class of your requests. It doesn't 
-     make sense by itself, so you can think on this as it was an abstract class.
-     
-     This class is open, so you can override any property on it when subclassing.
-     
-     **Note:** Using this class is not required. You can model your requests in a
-     more shiny, protocol-oriented fashion by only using KonexRequest and value types,
-     but this can be very useful in some kinds of application, when having a "Base request"
-     is worth it.
-     */
-    open class BasicRequest: KonexRequest {
-        open var requestPlugins: [KonexPlugin] { return [] }
-        open var requestResponseProcessors: [KonexResponseProcessor] = []
-        open var requestResponseValidators: [KonexResponseValidator] = []
-        
-        open var path: String { return "" }
-        open var method: Konex.HTTPMethod { return .get }
-        open var parameters: [String : Any]? { return [:] }
-        open var headers: [String : String]? { return [:] }
-    }
+/**
+ KonexBasicRequest is intended to be the base class of your requests. It doesn't
+ make sense by itself, so you can think on this as it was an abstract class.
+ 
+ This class is open, so you can override any property on it when subclassing.
+ 
+ **Note:** Using this class is not required. You can model your requests in a
+ more shiny, protocol-oriented fashion by only using KonexRequest and value types,
+ but this can be very useful in some kinds of application, when having a "Base request"
+ is worth it.
+ */
+open class KonexBasicRequest: KonexRequest {
+    open var requestPlugins: [KonexPlugin] { return [] }
+    open var requestResponseProcessors: [KonexResponseProcessor] = []
+    open var requestResponseValidators: [KonexResponseValidator] = []
+    
+    open var path: String { return "" }
+    open var method: Konex.HTTPMethod { return .get }
+    open var parameters: [String : Any]? { return [:] }
+    open var headers: [String : String]? { return [:] }
 }

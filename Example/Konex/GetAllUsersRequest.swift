@@ -9,6 +9,14 @@
 import Foundation
 import Konex
 
-final class GetAllUsersRequest: Konex.BaseRequest {
+final class GetAllUsersRequest: AuthenticatedRequest {
+    override var path: String {
+        return ""
+    }
     
+    override var parameters: [String : Any]? {
+        var params = super.parameters
+        params?["something"] = "anything"
+        return params
+    }
 }

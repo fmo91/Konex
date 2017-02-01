@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1850C19A1E4161A20004DA12 /* GetAllUsersRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1850C1991E4161A20004DA12 /* GetAllUsersRequest.swift */; };
+		1850C19C1E4162C00004DA12 /* AuthenticatedRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1850C19B1E4162C00004DA12 /* AuthenticatedRequest.swift */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
@@ -30,6 +31,7 @@
 
 /* Begin PBXFileReference section */
 		1850C1991E4161A20004DA12 /* GetAllUsersRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetAllUsersRequest.swift; sourceTree = "<group>"; };
+		1850C19B1E4162C00004DA12 /* AuthenticatedRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticatedRequest.swift; sourceTree = "<group>"; };
 		2A5D4DCB06FA445C76374430 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		3095B2B6AF28337F75E9ABB7 /* Pods_Konex_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Konex_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD01AFB9204008FA782 /* Konex_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Konex_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -75,6 +77,7 @@
 			isa = PBXGroup;
 			children = (
 				1850C1991E4161A20004DA12 /* GetAllUsersRequest.swift */,
+				1850C19B1E4162C00004DA12 /* AuthenticatedRequest.swift */,
 			);
 			name = Requests;
 			sourceTree = "<group>";
@@ -373,6 +376,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
+				1850C19C1E4162C00004DA12 /* AuthenticatedRequest.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 				1850C19A1E4161A20004DA12 /* GetAllUsersRequest.swift in Sources */,
 			);
