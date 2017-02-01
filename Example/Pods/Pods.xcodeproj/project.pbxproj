@@ -15,14 +15,13 @@
 		1051B0CEF129B04FA71AE9DD3E53A1D8 /* Mappable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E57A1A15BA8E0CA5333E387DA53050 /* Mappable.swift */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		1173A6F340C459CF4A21EE0607E4259E /* EnumOperators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E23AA6A3044DC116EB9672E4C41E9BC /* EnumOperators.swift */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		1597FDAFFC79F55903CACA3D6E5F749F /* TransformOf.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61DC0DF39D000B5F3B8CBB508300E9EA /* TransformOf.swift */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		1850C1971E4154450004DA12 /* KonexBasicRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1850C1961E4154450004DA12 /* KonexBasicRequest.swift */; };
 		19B937F803278BFEAAFF2262A7E81188 /* ISO8601DateTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392F30E77ACEF773574481788FC164CE /* ISO8601DateTransform.swift */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		1A41C437A04CEDB8FE0841E1227AA874 /* Pods-Konex_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = B201B6AFBF6FA0263D7326BFA59970DA /* Pods-Konex_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1B0871B6BA50D218499BC1728DB26310 /* DictionaryTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06CDAEF9D7972CD688E81E8481C5DD6 /* DictionaryTransform.swift */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		3232D920146A5E6D99F0CF0A6922E638 /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF71DAD642E10BDF1FE8BC808AAB724 /* Map.swift */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		32BCEFFEE75DE1455A648DAD9E4596DD /* KonexComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EA8B0E2CCB0F741DE7B36C4D2F20B54 /* KonexComponent.swift */; };
 		3822F2C0A477189851DA55F2C3FB084B /* Konex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955374328658A8514F025E67A171B71E /* Konex.swift */; };
 		38D9B9435549B179264AC16782C9AC1D /* HexColorTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2FEFCCEC489E1F7D5AC152045E9E0C /* HexColorTransform.swift */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		440AC859794258D5C735638D192AF827 /* NetworkLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED100A49561691B43279211465BD38B9 /* NetworkLogger.swift */; };
 		465425D2E119FCA28CD685CC3B4A07AE /* KonexClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8A1FAE6EA97803893D1D1F05EAE78C /* KonexClient.swift */; };
 		4D00CDDB3F39321614A551FD3B27D013 /* ToJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF89DE8C0F20ED983508FB20E08E640C /* ToJSON.swift */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		4E4BE7AD74B7A32F33BE7BDFBF81D291 /* ObjectMapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 515BB24BCB558A6C6816DC6C1C97492C /* ObjectMapper.framework */; };
@@ -79,7 +78,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		001C106687BD78F7CCA7877819361F8B /* Konex.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = Konex.modulemap; sourceTree = "<group>"; };
+		001C106687BD78F7CCA7877819361F8B /* Konex.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = Konex.modulemap; sourceTree = "<group>"; };
 		005C3D46D75C560B135C437A0F381F11 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		054B3258C5AB63C779065958C1B2EE8F /* Pods-Konex_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Konex_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		06EF901DA7C5DFE9D41EE55A6980EA71 /* Konex-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Konex-umbrella.h"; sourceTree = "<group>"; };
@@ -87,11 +86,12 @@
 		127EE13AFBF3AA14172CBE0D8BCDF5E7 /* EnumTransform.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EnumTransform.swift; path = Sources/EnumTransform.swift; sourceTree = "<group>"; };
 		155F2B46ED68B8AFF866EE876CD507F7 /* Pods-Konex_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Konex_Tests-frameworks.sh"; sourceTree = "<group>"; };
 		15EBC2D3866CD4DFF4236D649D7D64A2 /* KonexPlugin.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = KonexPlugin.swift; sourceTree = "<group>"; };
+		1850C1961E4154450004DA12 /* KonexBasicRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KonexBasicRequest.swift; sourceTree = "<group>"; };
 		18D9E33A75CE3BB1E1241E871259CC06 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		198B1521827D4394F9D7BC9758E851C8 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1B153040E6D5A76EA5EFC54804596EB0 /* FromJSON.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FromJSON.swift; path = Sources/FromJSON.swift; sourceTree = "<group>"; };
 		21DD437FFEE75C18A918A5DF609975F5 /* KonexResponseValidator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = KonexResponseValidator.swift; sourceTree = "<group>"; };
-		238CD0EB8BDBB00BB7C558BFAEF10C98 /* Pods_Konex_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Konex_Example.framework; path = "Pods-Konex_Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		238CD0EB8BDBB00BB7C558BFAEF10C98 /* Pods_Konex_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Konex_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		23F81C79A855F1B8B829D010AFC9A955 /* NSDecimalNumberTransform.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NSDecimalNumberTransform.swift; path = Sources/NSDecimalNumberTransform.swift; sourceTree = "<group>"; };
 		272EE0F8AB0D7A7B0171476641F266DC /* Konex-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Konex-dummy.m"; sourceTree = "<group>"; };
 		2C3A77ECEA5DA5F05866307CB09D6969 /* MapError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MapError.swift; path = Sources/MapError.swift; sourceTree = "<group>"; };
@@ -104,7 +104,6 @@
 		3F2FEFCCEC489E1F7D5AC152045E9E0C /* HexColorTransform.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HexColorTransform.swift; path = Sources/HexColorTransform.swift; sourceTree = "<group>"; };
 		42F3A1D28B521ED95269E3E74A67286B /* Pods-Konex_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Konex_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
 		4A6856816DA7D06ABE8EBBB661D0EE88 /* Pods-Konex_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Konex_Tests-dummy.m"; sourceTree = "<group>"; };
-		4EA8B0E2CCB0F741DE7B36C4D2F20B54 /* KonexComponent.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = KonexComponent.swift; sourceTree = "<group>"; };
 		515BB24BCB558A6C6816DC6C1C97492C /* ObjectMapper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ObjectMapper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		531F230B2AB29BBCAA1A1DB1FE8F2800 /* KonexReponseProcessor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = KonexReponseProcessor.swift; sourceTree = "<group>"; };
 		59E57A1A15BA8E0CA5333E387DA53050 /* Mappable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Mappable.swift; path = Sources/Mappable.swift; sourceTree = "<group>"; };
@@ -112,14 +111,14 @@
 		61DC0DF39D000B5F3B8CBB508300E9EA /* TransformOf.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TransformOf.swift; path = Sources/TransformOf.swift; sourceTree = "<group>"; };
 		6E2E1A64F8100149C4A877AF0DC19208 /* Pods-Konex_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Konex_Tests-resources.sh"; sourceTree = "<group>"; };
 		6F53A95590265CC86F9FA955B8D1F76B /* TransformOperators.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TransformOperators.swift; path = Sources/TransformOperators.swift; sourceTree = "<group>"; };
-		74650F8D92813F597FDEF076CE6E981B /* Konex.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Konex.framework; path = Konex.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		74650F8D92813F597FDEF076CE6E981B /* Konex.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Konex.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		76108903E69A2DE0F123D832481768CA /* ObjectMapper-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ObjectMapper-prefix.pch"; sourceTree = "<group>"; };
-		7EB2435B378E6A5E8E86C4D1DAA99161 /* Pods_Konex_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Konex_Tests.framework; path = "Pods-Konex_Tests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7EB2435B378E6A5E8E86C4D1DAA99161 /* Pods_Konex_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Konex_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		896AD8D92009B1D0BDFBBC1D412BD3F7 /* Pods-Konex_Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Konex_Example-resources.sh"; sourceTree = "<group>"; };
 		8BD5CAF6BAB57579A4FCEA9208574B2F /* Pods-Konex_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Konex_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		8CAD98C8E608B135C6C259C0335C2CCB /* Pods-Konex_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Konex_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		939CB665AF1B3991A2B84C4BD243BB19 /* Pods-Konex_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-Konex_Example.modulemap"; sourceTree = "<group>"; };
-		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		939CB665AF1B3991A2B84C4BD243BB19 /* Pods-Konex_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-Konex_Example.modulemap"; sourceTree = "<group>"; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		955374328658A8514F025E67A171B71E /* Konex.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Konex.swift; sourceTree = "<group>"; };
 		9C0573A77FD78C2359F669D8116D8CC8 /* HTTPMethod.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		9EA1163C8F70C54C02E67C6F3F128696 /* Mapper.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Mapper.swift; path = Sources/Mapper.swift; sourceTree = "<group>"; };
@@ -127,12 +126,12 @@
 		A35D0B5A3574893A258DF1BCAA75F8EB /* ObjectMapper-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ObjectMapper-umbrella.h"; sourceTree = "<group>"; };
 		A84F096F8DE4FCC318A170848E587458 /* ObjectMapper-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "ObjectMapper-dummy.m"; sourceTree = "<group>"; };
 		A933395E455F8BF19A8E5F3962F344DF /* URLTransform.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = URLTransform.swift; path = Sources/URLTransform.swift; sourceTree = "<group>"; };
-		AA7EEAC517604526F00CBE0B02559C63 /* ObjectMapper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = ObjectMapper.framework; path = ObjectMapper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA7EEAC517604526F00CBE0B02559C63 /* ObjectMapper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ObjectMapper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B201B6AFBF6FA0263D7326BFA59970DA /* Pods-Konex_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Konex_Tests-umbrella.h"; sourceTree = "<group>"; };
-		BC19EDE47A3BB5396255280BE20609EB /* Pods-Konex_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-Konex_Tests.modulemap"; sourceTree = "<group>"; };
+		BC19EDE47A3BB5396255280BE20609EB /* Pods-Konex_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-Konex_Tests.modulemap"; sourceTree = "<group>"; };
 		BC8A1FAE6EA97803893D1D1F05EAE78C /* KonexClient.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = KonexClient.swift; sourceTree = "<group>"; };
 		C1BECBD9AAAD1A245015CCA5A4111E85 /* Konex.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Konex.xcconfig; sourceTree = "<group>"; };
-		C5433B14A726C25D87462624AABAF2BB /* ObjectMapper.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = ObjectMapper.modulemap; sourceTree = "<group>"; };
+		C5433B14A726C25D87462624AABAF2BB /* ObjectMapper.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = ObjectMapper.modulemap; sourceTree = "<group>"; };
 		C6C0D11E539ED078EF3E964B47993DE5 /* TransformType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TransformType.swift; path = Sources/TransformType.swift; sourceTree = "<group>"; };
 		CE823BFD51BCAFB8DFE9E3FB75FFC83D /* DateTransform.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DateTransform.swift; path = Sources/DateTransform.swift; sourceTree = "<group>"; };
 		CF89DE8C0F20ED983508FB20E08E640C /* ToJSON.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ToJSON.swift; path = Sources/ToJSON.swift; sourceTree = "<group>"; };
@@ -146,7 +145,6 @@
 		E73ED9B56D7934E7292F483899EA6705 /* Pods-Konex_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Konex_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		E83AF4F150250594C62A7996911D0984 /* Pods-Konex_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Konex_Example-frameworks.sh"; sourceTree = "<group>"; };
 		ECF71DAD642E10BDF1FE8BC808AAB724 /* Map.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Map.swift; path = Sources/Map.swift; sourceTree = "<group>"; };
-		ED100A49561691B43279211465BD38B9 /* NetworkLogger.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NetworkLogger.swift; sourceTree = "<group>"; };
 		F06CDAEF9D7972CD688E81E8481C5DD6 /* DictionaryTransform.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DictionaryTransform.swift; path = Sources/DictionaryTransform.swift; sourceTree = "<group>"; };
 		F906223EDFF143D8FC85E7BDD33990E9 /* DateFormatterTransform.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DateFormatterTransform.swift; path = Sources/DateFormatterTransform.swift; sourceTree = "<group>"; };
 		F9742C82691F99C4A4D781736CC03423 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -214,15 +212,13 @@
 				9C0573A77FD78C2359F669D8116D8CC8 /* HTTPMethod.swift */,
 				955374328658A8514F025E67A171B71E /* Konex.swift */,
 				BC8A1FAE6EA97803893D1D1F05EAE78C /* KonexClient.swift */,
-				4EA8B0E2CCB0F741DE7B36C4D2F20B54 /* KonexComponent.swift */,
 				0C8251E2B5D019215CB7A0CD985A7692 /* KonexError.swift */,
 				15EBC2D3866CD4DFF4236D649D7D64A2 /* KonexPlugin.swift */,
 				531F230B2AB29BBCAA1A1DB1FE8F2800 /* KonexReponseProcessor.swift */,
-				DD19D9F8C5D3AEC1C99982B49924A5D5 /* KonexRequest.swift */,
 				21DD437FFEE75C18A918A5DF609975F5 /* KonexResponseValidator.swift */,
-				ED100A49561691B43279211465BD38B9 /* NetworkLogger.swift */,
+				DD19D9F8C5D3AEC1C99982B49924A5D5 /* KonexRequest.swift */,
+				1850C1961E4154450004DA12 /* KonexBasicRequest.swift */,
 			);
-			name = Classes;
 			path = Classes;
 			sourceTree = "<group>";
 		};
@@ -253,7 +249,6 @@
 				A933395E455F8BF19A8E5F3962F344DF /* URLTransform.swift */,
 				31B42CAFB03FBF00E921A113B1389032 /* Support Files */,
 			);
-			name = ObjectMapper;
 			path = ObjectMapper;
 			sourceTree = "<group>";
 		};
@@ -325,7 +320,6 @@
 			children = (
 				2498956F79B0155A1EA6A751876D745F /* Classes */,
 			);
-			name = Konex;
 			path = Konex;
 			sourceTree = "<group>";
 		};
@@ -561,15 +555,14 @@
 			files = (
 				5C9A6B3D0A92E8F581DC243793DC4727 /* HTTPMethod.swift in Sources */,
 				858A9D3DC2D5B4818C8C157F0EC2D849 /* Konex-dummy.m in Sources */,
+				1850C1971E4154450004DA12 /* KonexBasicRequest.swift in Sources */,
 				3822F2C0A477189851DA55F2C3FB084B /* Konex.swift in Sources */,
 				465425D2E119FCA28CD685CC3B4A07AE /* KonexClient.swift in Sources */,
-				32BCEFFEE75DE1455A648DAD9E4596DD /* KonexComponent.swift in Sources */,
 				AF3BA6F0018E50B7DEB3E49D36DBD964 /* KonexError.swift in Sources */,
 				9A03B56CE25A1C872A37BA6AC606FCAF /* KonexPlugin.swift in Sources */,
 				EC877BF9466818909BD699802605A23E /* KonexReponseProcessor.swift in Sources */,
 				0916782FE4A1458F15E6E77861A34C28 /* KonexRequest.swift in Sources */,
 				08D96AD478DBDB2ACE172C2EA0722C9D /* KonexResponseValidator.swift in Sources */,
-				440AC859794258D5C735638D192AF827 /* NetworkLogger.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

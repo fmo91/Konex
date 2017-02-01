@@ -45,9 +45,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let client = KonexClient()
-        
-        client.plugins.append(KonexComponent.NetworkLogger())
+        let client = Konex.Client()
         
         let request = GetAllPostsRequest()
         
@@ -55,10 +53,10 @@ class ViewController: UIViewController {
             .requestArray(of: Post.self,
                 request: request,
                 onSuccess: { posts in
-                    
+                    print("You have \(posts.count) posts")
                 },
                 onError: { error in
-                    
+                    print("Something went wrong.")
                 }
             )
         

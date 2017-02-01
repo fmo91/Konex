@@ -8,6 +8,10 @@
 
 import Foundation
 
+/**
+ KonexRequest is the request protocol that your requests has to implement
+ in order to be dispatched by the Konex.Client
+ */
 public protocol KonexRequest {
     var requestPlugins: [KonexPlugin] { get }
     var requestResponseProcessors: [KonexResponseProcessor] { get }
@@ -19,6 +23,7 @@ public protocol KonexRequest {
     var headers: [String: String]? { get }
 }
 
+// MARK: - Default implementations -
 public extension KonexRequest {
     var requestPlugins: [KonexPlugin] { return [] }
     var requestResponseProcessors: [KonexResponseProcessor] { return [] }
@@ -29,6 +34,7 @@ public extension KonexRequest {
     var headers: [String: String]? { return nil }
 }
 
+// MARK: - Util methods -
 internal extension KonexRequest {
     func urlRequest() throws -> URLRequest {
         guard let url = URL(string: finalPath) else {

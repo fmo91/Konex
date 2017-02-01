@@ -8,4 +8,8 @@
 
 import Foundation
 
+/**
+ Konex is a namespace in which are defined
+ some components of the Konex framework.
+ */
 public struct Konex {}

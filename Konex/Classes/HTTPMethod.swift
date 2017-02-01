@@ -9,6 +9,11 @@
 import Foundation
 
 public extension Konex {
+    
+    /**
+     HTTPMethod defines the methods
+     that are used when dispatching requests.
+     */
     public enum HTTPMethod: String {
         case get = "GET"
         case post = "POST"
