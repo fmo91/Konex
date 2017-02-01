@@ -51,7 +51,7 @@ let request = GetAllPostsRequest()
 
 client.requestArray(of: Post.self,
     request: request,
-    onSuccess: { (posts: Post) in
+    onSuccess: { (posts: [Post]) in
         // You can do whatever you want with your posts!
     },
     onError: { (error: Error) in
@@ -85,8 +85,8 @@ In addition, `KonexRequest` also lets you add Konex extension components that ar
 ```swift
 open class KonexBasicRequest: KonexRequest {
     open var requestPlugins: [KonexPlugin] { return [] }
-    open var requestResponseProcessors: [KonexResponseProcessor] = []
-    open var requestResponseValidators: [KonexResponseValidator] = []
+    open var requestResponseProcessors: [KonexResponseProcessor] { return [] } 
+    open var requestResponseValidators: [KonexResponseValidator] { return [] }
     
     open var path: String { return "" }
     open var method: Konex.HTTPMethod { return .get }

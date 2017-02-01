@@ -21,8 +21,8 @@ import Foundation
  */
 open class KonexBasicRequest: KonexRequest {
     open var requestPlugins: [KonexPlugin] { return [] }
-    open var requestResponseProcessors: [KonexResponseProcessor] = []
-    open var requestResponseValidators: [KonexResponseValidator] = []
+    open var requestResponseProcessors: [KonexResponseProcessor] { return [] }
+    open var requestResponseValidators: [KonexResponseValidator] { return [] }
     
     open var path: String { return "" }
     open var method: Konex.HTTPMethod { return .get }
