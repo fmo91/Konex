@@ -8,8 +8,8 @@
 
 Pod::Spec.new do |s|
   s.name             = 'Konex'
-  s.version          = '0.2.0'
-  s.summary          = 'Konex is an extensible, protocol oriented, reactive networking layer over URLSession written in swift.'
+  s.version          = ‘0.3.0’
+  s.summary          = 'Konex is an extensible, protocol oriented, networking layer over URLSession written in swift.'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-Konex is an extensible, protocol oriented, reactive networking layer over URLSession written in swift.
+Konex is an extensible, protocol oriented, networking layer over URLSession written in swift.
 
 You can extend it with plugins, response processors and validators. More info in github.
                        DESC
