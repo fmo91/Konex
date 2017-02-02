@@ -11,7 +11,7 @@ import ObjectMapper
 
 /**
  KonexClient is a class that is responsible for dispatching KonexRequests,
- optionally parsing json responses (currently using ObjectMapper),
+ optionally parsing json responses,
  and executing Konex Components at different times of request Life cycle.
  
  Example usage:
@@ -23,7 +23,7 @@ import ObjectMapper
      
      
      client.requestObject(
-         // User has to be a Mappable class or struct
+         // User has to be a KonexJSONDecodable class or struct
          ofType: User.self,
          request: request,
          onSuccess: { (user: User) in
@@ -40,10 +40,7 @@ open class KonexClient {
     
     // MARK: - Attributes -
     
-    /**
-     KonexClient relies on URLSession for performing requests.
-     */
-    let urlSession: URLSession
+    let engine: KonexEngine
     
     /**
      KonexClient has its own plugin collection that act
@@ -71,8 +68,8 @@ open class KonexClient {
      
      @param urlSession custom URLSession that is used to perform Konex requests.
      */
-    public init(urlSession: URLSession = .shared) {
-        self.urlSession = urlSession
+    public init(engine: KonexEngine = Konex.URLSessionEngine()) {
+        self.engine = engine
     }
     
     // MARK: - Requests dispatching -
@@ -80,12 +77,12 @@ open class KonexClient {
     /**
      This is the main method in KonexClient
      
-     Basically, using this method you can dispatch a KonexRequest and receive a data
+     Basically, using this method you can dispatch a KonexRequest via KonexEngine and receive a data
      response, or an error, that are handled by closures that you send to this method.
      
      request method also accept a collection of plugins, response processors and response validators.
      
-     - parameter request: a KonexRequest, that is converted to a URLRequest and then dispatched.
+     - parameter request: a KonexRequest, that is dispatched by KonexEngine.
      
      - parameter plugins: an array of KonexPlugin, that are executed after sending a request and after receiving a response.
      
@@ -103,30 +100,13 @@ open class KonexClient {
     @discardableResult
     open func request(request: KonexRequest, plugins localPlugins: [KonexPlugin] = [], responseProcessors localResponseProcessors: [KonexResponseProcessor] = [], responseValidators localResponseValidators: [KonexResponseValidator] = [], onSuccess: @escaping (Any) -> Void, onError: @escaping (Error) -> Void) -> URLSessionDataTask? {
         
-        let plugins = self.plugins + localPlugins + request.requestPlugins
-        let responseProcessors = self.responseProcessors + localResponseProcessors + request.requestResponseProcessors
-        let responseValidators = self.responseValidators + localResponseValidators + request.requestResponseValidators
+        let plugins = localPlugins + request.requestPlugins + self.plugins
+        let responseProcessors = localResponseProcessors + request.requestResponseProcessors + self.responseProcessors
+        let responseValidators = localResponseValidators + request.requestResponseValidators + self.responseValidators
         
-        do {
-            let urlRequest = try request.urlRequest()
-            let dataTask = urlSession.dataTask(with: urlRequest, completionHandler: { (data: Data?, response: URLResponse?, error: Error?) in
-                
-                if let error = error {
-                    onError(KonexError.wrongResponse(error))
-                    return
-                }
-                
-                guard let _data = data else {
-                    onError(KonexError.emptyResponse)
-                    return
-                }
-                
-                
-                guard let json = try? JSONSerialization.jsonObject(with: _data, options: JSONSerialization.ReadingOptions.allowFragments) else {
-                    onError(KonexError.invalidResponse)
-                    return
-                }
-                
+        let dataTask = engine.dispatch(
+            request: request,
+            onSuccess: { json in
                 plugins.forEach { $0.didReceiveResponse(json, from: request) }
                 
                 for validator in responseValidators {
@@ -145,25 +125,23 @@ open class KonexClient {
                 }
                 
                 onSuccess(processedResponse)
-            })
-            
-            plugins.forEach { $0.didSendRequest(request) }
-            
-            dataTask.resume()
-            
-            return dataTask
-        } catch let error {
-            onError(error)
-            return nil
-        }
+            },
+            onError: { error in
+                onError(error)
+            }
+        )
+        
+        plugins.forEach { $0.didSendRequest(request) }
+        
+        return dataTask
     }
     
     /**
-     Dispatches the KonexRequest using the urlSession and then parses the response using ObjectMapper to get an object of the given type.
+     Dispatches the KonexRequest using the KonexEngine and then parses the response using KonexJSONDecodable protocol to get an object of the given type.
      
-     - parameter ofType: a Mappable type to transform the response JSON.
+     - parameter ofType: a KonexJSONDecodable type to transform the response JSON.
      
-     - parameter request: a KonexRequest, that is converted to a URLRequest and then dispatched.
+     - parameter request: a KonexRequest, that is then dispatched by KonexEngine.
      
      - parameter plugins: an array of KonexPlugin, that are executed after sending a request and after receiving a response.
      
@@ -178,15 +156,17 @@ open class KonexClient {
      - returns: a URLSessionDataTask, that you can use to cancel the request at any time.
      */
     @discardableResult
-    open func requestObject<T:Mappable>(ofType type: T.Type, request: KonexRequest, plugins localPlugins: [KonexPlugin] = [], responseProcessors localResponseProcessors: [KonexResponseProcessor] = [], responseValidators localResponseValidators: [KonexResponseValidator] = [], onSuccess: @escaping (T) -> Void, onError: @escaping (Error) -> Void) -> URLSessionDataTask? {
-        let mapper = Mapper<T>()
-        
+    open func requestObject<T:KonexJSONDecodable>(ofType type: T.Type, request: KonexRequest, plugins localPlugins: [KonexPlugin] = [], responseProcessors localResponseProcessors: [KonexResponseProcessor] = [], responseValidators localResponseValidators: [KonexResponseValidator] = [], onSuccess: @escaping (T) -> Void, onError: @escaping (Error) -> Void) -> URLSessionDataTask? {
         return self.request(request: request,
             plugins: localPlugins,
             responseProcessors: localResponseProcessors,
             responseValidators: localResponseValidators,
             onSuccess: { response in
-                guard let parsedObject = mapper.map(JSONObject: response) else {
+                guard let json = response as? [String: Any] else {
+                    onError(KonexError.invalidParsing)
+                    return
+                }
+                guard let parsedObject = T.instantiate(withJSON: json) else {
                     onError(KonexError.invalidParsing)
                     return
                 }
@@ -199,11 +179,11 @@ open class KonexClient {
     }
     
     /**
-     Dispatches the KonexRequest using the urlSession and then parses the response using ObjectMapper to get an array of the given type.
+     Dispatches the KonexRequest using the KonexEngine and then parses the response using KonexJSONDecodable protocol to get an array of the given type.
      
-     - parameter of: a Mappable type to transform the response JSON.
+     - parameter of: a KonexJSONDecodable type to transform the response JSON.
      
-     - parameter request: a KonexRequest, that is converted to a URLRequest and then dispatched.
+     - parameter request: a KonexRequest, that is dispatched via KonexEngine.
      
      - parameter plugins: an array of KonexPlugin, that are executed after sending a request and after receiving a response.
      
@@ -218,18 +198,19 @@ open class KonexClient {
      - returns: a URLSessionDataTask, that you can use to cancel the request at any time.
      */
     @discardableResult
-    open func requestArray<T: Mappable>(of type: T.Type, request: KonexRequest, plugins localPlugins: [KonexPlugin] = [], responseProcessors localResponseProcessors: [KonexResponseProcessor] = [], responseValidators localResponseValidators: [KonexResponseValidator] = [], onSuccess: @escaping ([T]) -> Void, onError: @escaping (Error) -> Void) -> URLSessionDataTask? {
-        let mapper = Mapper<T>()
+    open func requestArray<T: KonexJSONDecodable>(of type: T.Type, request: KonexRequest, plugins localPlugins: [KonexPlugin] = [], responseProcessors localResponseProcessors: [KonexResponseProcessor] = [], responseValidators localResponseValidators: [KonexResponseValidator] = [], onSuccess: @escaping ([T]) -> Void, onError: @escaping (Error) -> Void) -> URLSessionDataTask? {
         
         return self.request(request: request,
             plugins: localPlugins,
             responseProcessors: localResponseProcessors,
             responseValidators: localResponseValidators,
             onSuccess: { response in
-                guard let parsedArray = mapper.mapArray(JSONObject: response) else {
+                guard let jsonArray = response as? [[String:Any]] else {
                     onError(KonexError.invalidParsing)
                     return
                 }
+                let parsedArray = jsonArray.flatMap(T.instantiate)
+                
                 onSuccess(parsedArray)
             },
             onError: { error in

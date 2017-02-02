@@ -10,12 +10,23 @@ import UIKit
 import ObjectMapper
 import Konex
 
-struct Post: Mappable {
+struct Post: KonexJSONDecodable {
     var id = -1
     var title = ""
     
+    init() {}
+    
     init?(map: Map) {
         
+    }
+    
+    static func instantiate(withJSON json: [String : Any]) -> Post? {
+        var post = Post()
+        
+        post.id = (json["id"] as? Int) ?? -1
+        post.title = (json["title"] as? String) ?? ""
+        
+        return post
     }
     
     mutating func mapping(map: Map) {
@@ -29,15 +40,30 @@ struct GetAllPostsRequest: KonexRequest {
     let path: String = "https://jsonplaceholder.typicode.com/posts"
 }
 
-struct CreatePostRequest: KonexRequest {
-    var path: String = "https://jsonplaceholder.typicode.com/posts"
-    var parameters: [String : Any]? {
+struct GetPostByIDRequest: KonexRequest {
+    let id: Int
+    
+    init(id: Int) {
+        self.id = id
+    }
+    
+    var path: String { return "https://jsonplaceholder.typicode.com/posts/\(id)" }
+    
+    var method: Konex.HTTPMethod = .get
+}
+
+class CreatePostRequest: KonexBaseRequest {
+    override var path: String {
+        return "https://jsonplaceholder.typicode.com/posts/"
+    }
+    override var method: Konex.HTTPMethod {
+        return .post
+    }
+    override var parameters: [String : Any]? {
         return [
-            "title": "Es una prueba",
-            "body": "Que sale bien?"
+            "title": "Something good"
         ]
     }
-    var method: Konex.HTTPMethod = .post
 }
 
 class ViewController: UIViewController {
@@ -47,27 +73,16 @@ class ViewController: UIViewController {
         
         let client = KonexClient()
         
-        let request = GetAllPostsRequest()
-        
-        client
-            .requestArray(of: Post.self,
-                request: request,
-                onSuccess: { posts in
-                    print("You have \(posts.count) posts")
-                },
-                onError: { error in
-                    print("Something went wrong.")
-                }
-            )
+        let request = CreatePostRequest()
         
         client
             .requestObject(ofType: Post.self,
-                request: CreatePostRequest(),
+                request: request,
                 onSuccess: { post in
-                    
+                    print("Received a post with title: \(post.title)")
                 },
                 onError: { error in
-                    
+                    print("Something went wrong.")
                 }
             )
         

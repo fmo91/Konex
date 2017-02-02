@@ -9,7 +9,7 @@
 import Foundation
 import Konex
 
-class AuthenticatedRequest: KonexBasicRequest {
+class AuthenticatedRequest: KonexBaseRequest {
     override var parameters: [String : Any]? {
         return ["access_token": "An awesome token!"]
     }

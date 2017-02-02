@@ -1,5 +1,5 @@
 //
-//  KonexBasicRequest.swift
+//  KonexBaseRequest.swift
 //  Pods
 //
 //  Created by Fernando Ortiz on 1/31/17.
@@ -9,7 +9,7 @@
 import Foundation
 
 /**
- KonexBasicRequest is intended to be the base class of your requests. It doesn't
+ KonexBaseRequest is intended to be the base class of your requests. It doesn't
  make sense by itself, so you can think on this as it was an abstract class.
  
  This class is open, so you can override any property on it when subclassing.
@@ -19,7 +19,7 @@ import Foundation
  but this can be very useful in some kinds of application, when having a "Base request"
  is worth it.
  */
-open class KonexBasicRequest: KonexRequest {
+open class KonexBaseRequest: KonexRequest {
     open var requestPlugins: [KonexPlugin] { return [] }
     open var requestResponseProcessors: [KonexResponseProcessor] { return [] }
     open var requestResponseValidators: [KonexResponseValidator] { return [] }

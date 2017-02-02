@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'Konex'
-  s.version          = '0.4.2'
+  s.version          = ‘0.5.0’
   s.summary          = 'Konex is an extensible, protocol oriented, networking layer over URLSession written in swift.'
 
 # This description is used to generate tags and improve search results.
@@ -40,5 +40,5 @@ You can extend it with plugins, response processors and validators. More info in
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
-  s.dependency 'ObjectMapper', '~> 2.2'
+  # s.dependency 'ObjectMapper', '~> 2.2'
 end
