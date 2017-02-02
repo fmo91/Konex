@@ -18,7 +18,7 @@ Konex can optionally parse responses to json objects.
 - [x] Easy to begin with
 - [x] Already parsed responses
 - [x] Lightweight
-- [x] Enforces good practices
+- [x] Enforces architectural best practices
 - [ ] Much more coming soon... 
 
 ## Brief practical example
