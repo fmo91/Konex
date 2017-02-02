@@ -10,6 +10,17 @@
 Konex is a lightweight protocol-oriented networking library written in swift that can be easily extended or modified. It enforces a networking layer organization by forces to implement each request in a separate object. 
 Konex can optionally parse responses to json objects.
 
+## Features
+
+- [x] Totally modular
+- [x] Protocol oriented 
+- [x] Highly extensible
+- [x] Easy to begin with
+- [x] Already parsed responses
+- [x] Lightweight
+- [x] Enforces good practices
+- [ ] Much more coming soon... 
+
 ## Brief practical example
 
 At the core of the Konex library there is the `KonexRequest` protocol. So, the first you have to do is implement that protocol in a struct or a class.
