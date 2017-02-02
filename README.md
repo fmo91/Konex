@@ -8,7 +8,7 @@
 ## Introduction
 
 Konex is a lightweight protocol-oriented networking library written in swift that can be easily extended or modified. It enforces a networking layer organization by forces to implement each request in a separate object. 
-Konex can optionally parse responses, using [ObjectMapper](https://github.com/Hearst-DD/ObjectMapper).
+Konex can optionally parse responses to json objects.
 
 ## Brief practical example
 
@@ -26,20 +26,24 @@ We need a Post class that can be written like this:
 ```swift
 import ObjectMapper
 
-struct Post: Mappable {
+struct Post: KonexJSONDecodable {
     var id: Int?
     var title = ""
     
-    init(map: Map) {}
+    init() {}
     
-    mutating func mapping(map: Map) {
-        id <- map["id"]
-        title <- map["title"]
+    static func instantiate(withJSON json: [String : Any]) -> Post? {
+        var post = Post()
+        
+        post.id = json["id"] as? Int
+        post.title = json["title"] as? String
+        
+        return post
     }
 }
 ```
 
-It's important for our purposes that the Post class implements `Mappable` protocol.
+It's important for our purposes that the Post class implements `KonexJSONDecodable` protocol.
 Once you have the model and the request modelled, we are in conditions of dispatching that request and getting the response.
 
 The class that is responsible for dispatching requests is `KonexClient`. It can be used as is, so you can instantiate it and start using in wherever you want.

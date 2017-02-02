@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import ObjectMapper
 
 /**
  KonexClient is a class that is responsible for dispatching KonexRequests,
