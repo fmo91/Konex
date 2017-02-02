@@ -28,7 +28,7 @@ import ObjectMapper
 
 struct Post: KonexJSONDecodable {
     var id: Int?
-    var title = ""
+    var title: String?
     
     init() {}
     
