@@ -4,6 +4,7 @@
 [![Version](https://img.shields.io/cocoapods/v/Konex.svg?style=flat)](http://cocoapods.org/pods/Konex)
 [![License](https://img.shields.io/cocoapods/l/Konex.svg?style=flat)](http://cocoapods.org/pods/Konex)
 [![Platform](https://img.shields.io/cocoapods/p/Konex.svg?style=flat)](http://cocoapods.org/pods/Konex)
+[![codebeat badge](https://codebeat.co/badges/70b7f330-d723-4e0c-8a68-7268be2b464d)](https://codebeat.co/projects/github-com-fmo91-konex)
 
 ## Introduction
 
