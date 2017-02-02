@@ -6,6 +6,8 @@
 [![Platform](https://img.shields.io/cocoapods/p/Konex.svg?style=flat)](http://cocoapods.org/pods/Konex)
 [![codebeat badge](https://codebeat.co/badges/70b7f330-d723-4e0c-8a68-7268be2b464d)](https://codebeat.co/projects/github-com-fmo91-konex)
 
+![GitHub Logo](/assets/portrait.jpg)
+
 ## Introduction
 
 Konex is a lightweight protocol-oriented networking library written in swift that can be easily extended or modified. It enforces a networking layer organization by forces to implement each request in a separate object. 
