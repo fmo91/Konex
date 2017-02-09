@@ -123,10 +123,14 @@ open class KonexClient {
                     processedResponse = processor.process(response: processedResponse)
                 }
                 
-                onSuccess(processedResponse)
+                DispatchQueue.main.async {
+                    onSuccess(processedResponse)
+                }
             },
             onError: { error in
-                onError(error)
+                DispatchQueue.main.async {
+                    onError(error)
+                }
             }
         )
         
